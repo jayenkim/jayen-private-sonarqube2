@@ -16,7 +16,7 @@ steps:
           from_secret: sast_server
         SAST_TOKEN_DRONE_WEB:
           from_secret: sast_token
-        SONAR_TOKEN: f856119d9b49994fa8ebc3d1d11c1bdcab5f7012
+        SONAR_TOKEN: 7b71a0947670d0a9f9d05e66aad7242bad6ed865
 
     volumes:
       - name: cache
@@ -73,7 +73,7 @@ steps:
        -Dsonar.projectKey=jayenkim_jayen-private-sonarqube2 \
        -Dsonar.sources=. \
        -Dsonar.host.url=https://sonarcloud.io \
-       -Dsonar.login=f856119d9b49994fa8ebc3d1d11c1bdcab5f7012 \
+       -Dsonar.login=7b71a0947670d0a9f9d05e66aad7242bad6ed865 \
        -Dsonar.verbose=true \
        -Dsonar.java.binaries=. \ 
        -Dsonar.java.libraries=. \
