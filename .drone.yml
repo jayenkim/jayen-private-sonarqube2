@@ -31,18 +31,12 @@ steps:
 #       -Dsonar.github.disableInlineComments=false \
 #       -Dsonar.qualitygate.wait=false \
 #       -Dsonar.qualitygate.timeout=150 \
-      - export SONAR_SCANNER_VERSION=4.7.0.2747
-      - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
-      - curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
-      - unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
-      - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
-      - export SONAR_SCANNER_OPTS="-server"
-
       - "sonar-scanner \
        -Dsonar.organization=jayenkim \
        -Dsonar.projectKey=jayenkim_jayen-private-sonarqube2 \
        -Dsonar.sources=. \
        -Dsonar.host.url=https://sonarcloud.io \
+       -Dsonar.login=f856119d9b49994fa8ebc3d1d11c1bdcab5f7012
        --debug" 
     when:
       branch: 
@@ -71,24 +65,11 @@ steps:
     commands:
 #https://community.sonarsource.com/t/solved-sonarqube-pr-analysis-is-working-but-github-pr-check-is-not-happening/12198
       - "sonar-scanner \
-       -Dsonar.projectName=PR-${DRONE_REPO_NAMESPACE}_${DRONE_REPO_NAME}_${DRONE_COMMIT_AUTHOR} \ 
-       -Dsonar.projectKey=PR-${DRONE_REPO_NAME} \ 
-       -Dsonar.branch.name=main \
+       -Dsonar.organization=jayenkim \
+       -Dsonar.projectKey=jayenkim_jayen-private-sonarqube2 \
        -Dsonar.sources=. \
-       -Dsonar.host.url=https://0ab0-211-192-161-87.jp.ngrok.io \
-       -Dsonar.login=51e1c470c568383ee546b0625cd8a43609d6101d \ 
-       -Dsonar.verbose=true \
-       -Dsonar.java.binaries=. \ 
-       -Dsonar.java.libraries=. \
-       -Dsonar.exclusions=*LICENSE* \  
-       -Dsonar.issuesReport.console.enable=true \
-       -Dsonar.github.disableInlineComments=false \
-       -Dsonar.pullrequest.key=${DRONE_PULL_REQUEST} \
-       -Dsonar.pullrequest.branch=${DRONE_SOURCE_BRANCH} \
-       -Dsonar.pullrequest.base=${DRONE_TARGET_BRANCH} \
-       -Dsonar.pullrequest.provider=github \
-       -Dsonar.qulitygate.wait=true \ 
-       -Dsonar.qualitygate.timeout=150 \
+       -Dsonar.host.url=https://sonarcloud.io \
+       -Dsonar.login=f856119d9b49994fa8ebc3d1d11c1bdcab5f7012
        --debug" 
     when:
       branch: 
