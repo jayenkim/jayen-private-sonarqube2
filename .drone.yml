@@ -36,7 +36,11 @@ steps:
        -Dsonar.projectKey=jayenkim_jayen-private-sonarqube2 \
        -Dsonar.sources=. \
        -Dsonar.host.url=https://sonarcloud.io \
-       -Dsonar.login=f856119d9b49994fa8ebc3d1d11c1bdcab5f7012
+       -Dsonar.login=f856119d9b49994fa8ebc3d1d11c1bdcab5f7012 \
+       -Dsonar.verbose=true \
+       -Dsonar.java.binaries=. \ 
+       -Dsonar.java.libraries=. \
+       -Dsonar.exclusions=*LICENSE* \  
        --debug" 
     when:
       branch: 
@@ -69,7 +73,11 @@ steps:
        -Dsonar.projectKey=jayenkim_jayen-private-sonarqube2 \
        -Dsonar.sources=. \
        -Dsonar.host.url=https://sonarcloud.io \
-       -Dsonar.login=f856119d9b49994fa8ebc3d1d11c1bdcab5f7012
+       -Dsonar.login=f856119d9b49994fa8ebc3d1d11c1bdcab5f7012 \
+       -Dsonar.verbose=true \
+       -Dsonar.java.binaries=. \ 
+       -Dsonar.java.libraries=. \
+       -Dsonar.exclusions=*LICENSE* \  
        --debug" 
     when:
       branch: 
