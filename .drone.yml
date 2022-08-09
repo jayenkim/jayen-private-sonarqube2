@@ -21,16 +21,7 @@ steps:
     volumes:
       - name: cache
         path: ~/.sonar
-#    secrets: [ sonarqube_project_key, sonarqube_project_token, sonarqube_server ]
-#      SONARQUBE_PROJECT_KEY: jayenkim_jayen-private-sonarqube1_AYJhqO2_o8-gNB5rV5mx
-#      SONARQUBE_PROJECT_TOKEN: squ_21e1b60e4dc102e8a369a4bea8c641bde2e6057a
-#      SONARQUBE_SERVER: https://0ab0-211-192-161-87.jp.ngrok.io
-#       -Dsonar.host.url=https://0ab0-211-192-161-87.jp.ngrok.io \
-#       -Dsonar.login=51e1c470c568383ee546b0625cd8a43609d6101d \ 
     commands:
-#       -Dsonar.github.disableInlineComments=false \
-#       -Dsonar.qualitygate.wait=false \
-#       -Dsonar.qualitygate.timeout=150 \
       - "sonar-scanner \
        -Dsonar.organization=jayenkim \
        -Dsonar.projectKey=BRANCH-${DRONE_REPO_NAMESPACE}_${DRONE_REPO_NAME}_${DRONE_COMMIT_AUTHOR} \
@@ -41,9 +32,6 @@ steps:
        -Dsonar.java.libraries=. \
        -Dsonar.branch.name=main \
        -Dsonar.exclusions=*LICENSE* \  
-       -Dsonar.issuesReport.console.enable=true \
-       -Dsonar.qulitygate.wait=true \ 
-       -Dsonar.qualitygate.timeout=150 \
        --debug" 
     when:
       event:
@@ -61,14 +49,7 @@ steps:
     volumes:
       - name: cache
         path: ~/.sonar
-#    secrets: [ sonarqube_project_key, sonarqube_project_token, sonarqube_server ]
-#      SONARQUBE_PROJECT_KEY: jayenkim_jayen-private-sonarqube1_AYJhqO2_o8-gNB5rV5mx
-#      SONARQUBE_PROJECT_TOKEN: squ_21e1b60e4dc102e8a369a4bea8c641bde2e6057a
-#      SONARQUBE_SERVER: https://0ab0-211-192-161-87.jp.ngrok.io
-#       -Dsonar.host.url=https://0ab0-211-192-161-87.jp.ngrok.io \
-#       -Dsonar.login=51e1c470c568383ee546b0625cd8a43609d6101d \  
     commands:
-#https://community.sonarsource.com/t/solved-sonarqube-pr-analysis-is-working-but-github-pr-check-is-not-happening/12198
       - "sonar-scanner \
        -Dsonar.organization=jayenkim \
        -Dsonar.projectKey=PR-${DRONE_REPO_NAMESPACE}_${DRONE_REPO_NAME}_${DRONE_COMMIT_AUTHOR} \
@@ -79,10 +60,10 @@ steps:
        -Dsonar.java.libraries=. \
        -Dsonar.branch.name=main \
        -Dsonar.exclusions=*LICENSE* \  
-       -Dsonar.issuesReport.console.enable=true \ 
-       -Dsonar.qulitygate.wait=true \ 
-       -Dsonar.qualitygate.timeout=150 \
        --debug" 
+#       -Dsonar.issuesReport.console.enable=true \ 
+#       -Dsonar.qulitygate.wait=true \ 
+#       -Dsonar.qualitygate.timeout=150 \
     when:
       branch: 
         - main
