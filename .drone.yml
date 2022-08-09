@@ -1,0 +1,90 @@
+---
+kind: pipeline
+type: docker
+name: source-code-analysis-in-drone
+        
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: source-code-analysis-push-in-drone
+    pull: if-not-exists
+    image: sonarsource/sonar-scanner-cli
+    environment:
+        SAST_SERVER_DRONE_WEB: 
+          from_secret: sast_server
+        SAST_TOKEN_DRONE_WEB:
+          from_secret: sast_token
+        SONAR_TOKEN: 7b71a0947670d0a9f9d05e66aad7242bad6ed865
+
+    volumes:
+      - name: cache
+        path: ~/.sonar
+#    secrets: [ sonarqube_project_key, sonarqube_project_token, sonarqube_server ]
+#      SONARQUBE_PROJECT_KEY: jayenkim_jayen-private-sonarqube1_AYJhqO2_o8-gNB5rV5mx
+#      SONARQUBE_PROJECT_TOKEN: squ_21e1b60e4dc102e8a369a4bea8c641bde2e6057a
+#      SONARQUBE_SERVER: https://0ab0-211-192-161-87.jp.ngrok.io
+#       -Dsonar.host.url=https://0ab0-211-192-161-87.jp.ngrok.io \
+#       -Dsonar.login=51e1c470c568383ee546b0625cd8a43609d6101d \ 
+    commands:
+#       -Dsonar.github.disableInlineComments=false \
+#       -Dsonar.qualitygate.wait=false \
+#       -Dsonar.qualitygate.timeout=150 \
+      - "sonar-scanner \
+       -Dsonar.organization=jayenkim \
+       -Dsonar.projectKey=jayenkim_jayen-private-sonarqube2 \
+       -Dsonar.sources=. \
+       -Dsonar.host.url=https://sonarcloud.io \
+       -Dsonar.login=f856119d9b49994fa8ebc3d1d11c1bdcab5f7012 \
+       -Dsonar.verbose=true \
+       -Dsonar.java.binaries=. \ 
+       -Dsonar.java.libraries=. \
+       -Dsonar.exclusions=*LICENSE* \  
+       --debug" 
+    when:
+      branch: 
+        - main
+      event:
+        include:
+          - push
+
+  - name: source-code-analysis-pr-in-drone
+    pull: if-not-exists
+    image: sonarsource/sonar-scanner-cli
+    environment:
+        SAST_SERVER_DRONE_WEB: 
+          from_secret: sast_server
+        SAST_TOKEN_DRONE_WEB:
+          from_secret: sast_token
+    volumes:
+      - name: cache
+        path: ~/.sonar
+#    secrets: [ sonarqube_project_key, sonarqube_project_token, sonarqube_server ]
+#      SONARQUBE_PROJECT_KEY: jayenkim_jayen-private-sonarqube1_AYJhqO2_o8-gNB5rV5mx
+#      SONARQUBE_PROJECT_TOKEN: squ_21e1b60e4dc102e8a369a4bea8c641bde2e6057a
+#      SONARQUBE_SERVER: https://0ab0-211-192-161-87.jp.ngrok.io
+#       -Dsonar.host.url=https://0ab0-211-192-161-87.jp.ngrok.io \
+#       -Dsonar.login=51e1c470c568383ee546b0625cd8a43609d6101d \  
+    commands:
+#https://community.sonarsource.com/t/solved-sonarqube-pr-analysis-is-working-but-github-pr-check-is-not-happening/12198
+      - "sonar-scanner \
+       -Dsonar.organization=jayenkim \
+       -Dsonar.projectKey=jayenkim_jayen-private-sonarqube2 \
+       -Dsonar.sources=. \
+       -Dsonar.host.url=https://sonarcloud.io \
+       -Dsonar.login=7b71a0947670d0a9f9d05e66aad7242bad6ed865 \
+       -Dsonar.verbose=true \
+       -Dsonar.java.binaries=. \ 
+       -Dsonar.java.libraries=. \
+       -Dsonar.exclusions=*LICENSE* \  
+       --debug" 
+    when:
+      branch: 
+        - main
+      event:
+        include:
+          - pull_request
+      ref:
+        - refs/heads/master
+        - refs/pull/**
