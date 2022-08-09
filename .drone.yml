@@ -6,7 +6,7 @@ name: source-code-analysis-in-drone
 platform:
   os: linux
   arch: amd64
-
+  
 steps:
   - name: source-code-analysis-push-in-drone
     pull: if-not-exists
@@ -60,7 +60,7 @@ steps:
     volumes:
       - name: cache
         path: ~/.sonar
-#    secrets: [ sonarqube_project_key, sonarqube_project_token, sonarqube_server ]
+##    secrets: [ sonarqube_project_key, sonarqube_project_token, sonarqube_server ]
 #      SONARQUBE_PROJECT_KEY: jayenkim_jayen-private-sonarqube1_AYJhqO2_o8-gNB5rV5mx
 #      SONARQUBE_PROJECT_TOKEN: squ_21e1b60e4dc102e8a369a4bea8c641bde2e6057a
 #      SONARQUBE_SERVER: https://0ab0-211-192-161-87.jp.ngrok.io
