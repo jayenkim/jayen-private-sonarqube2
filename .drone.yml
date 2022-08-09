@@ -68,9 +68,9 @@ steps:
 #https://community.sonarsource.com/t/solved-sonarqube-pr-analysis-is-working-but-github-pr-check-is-not-happening/12198
       - "sonar-scanner \
        -Dsonar.organization=jayenkim \
-       -Dsonar.branch.name=main \
        -Dsonar.projectKey=PR-${DRONE_REPO_NAMESPACE}_${DRONE_REPO_NAME}_${DRONE_COMMIT_AUTHOR} \
        -Dsonar.sources=. \
+       -Dsonar.branch.name=main \
        -Dsonar.host.url=https://sonarcloud.io \
        -Dsonar.login=3c7fafbc53b71c70dac23086d9128da821e41107 \
        -Dsonar.verbose=true \
