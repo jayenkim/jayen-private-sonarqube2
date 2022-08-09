@@ -79,7 +79,7 @@ steps:
        -Dsonar.java.libraries=. \
        -Dsonar.branch.name=main \
        -Dsonar.exclusions=*LICENSE* \  
-       -Dsonar.issuesReport.console.enable=true \
+       -Dsonar.issuesReport.console.enable=true \ 
        -Dsonar.qulitygate.wait=true \ 
        -Dsonar.qualitygate.timeout=150 \
        --debug" 
