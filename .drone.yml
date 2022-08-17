@@ -58,12 +58,12 @@ steps:
        -Dsonar.login=f55e2744c6dce02e2d90c413e3fbe894d3b946ee \
        -Dsonar.java.binaries=. \ 
        -Dsonar.java.libraries=. \
-       -Dsonar.branch.name=main \
        -Dsonar.exclusions=*LICENSE* \  
        --debug" 
 #       -Dsonar.issuesReport.console.enable=true \ 
-#       -Dsonar.qulitygate.wait=true \ 
+#       -Dsonar.qulitygate.wait=true \   
 #       -Dsonar.qualitygate.timeout=150 \
+#        -Dsonar.branch.name=main \
     when:
       branch: 
         - main
