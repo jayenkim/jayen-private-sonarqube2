@@ -16,7 +16,7 @@ steps:
           from_secret: sast_server
         SAST_TOKEN_DRONE_WEB:
           from_secret: sast_token
-        SONAR_TOKEN: 3c7fafbc53b71c70dac23086d9128da821e41107
+        SONAR_TOKEN: f55e2744c6dce02e2d90c413e3fbe894d3b946ee
 
     volumes:
       - name: cache
@@ -27,7 +27,7 @@ steps:
        -Dsonar.projectKey=BRANCH-${DRONE_REPO_NAMESPACE}_${DRONE_REPO_NAME}_${DRONE_COMMIT_AUTHOR} \
        -Dsonar.sources=. \
        -Dsonar.host.url=https://sonarcloud.io \
-       -Dsonar.login=3c7fafbc53b71c70dac23086d9128da821e41107 \
+       -Dsonar.login=f55e2744c6dce02e2d90c413e3fbe894d3b946ee \
        -Dsonar.java.binaries=. \ 
        -Dsonar.java.libraries=. \
        -Dsonar.branch.name=main \ 
@@ -55,7 +55,7 @@ steps:
        -Dsonar.projectKey=PR-${DRONE_REPO_NAMESPACE}_${DRONE_REPO_NAME}_${DRONE_COMMIT_AUTHOR} \
        -Dsonar.sources=. \
        -Dsonar.host.url=https://sonarcloud.io \
-       -Dsonar.login=3c7fafbc53b71c70dac23086d9128da821e41107 \
+       -Dsonar.login=f55e2744c6dce02e2d90c413e3fbe894d3b946ee \
        -Dsonar.java.binaries=. \ 
        -Dsonar.java.libraries=. \
        -Dsonar.branch.name=main \
