@@ -52,7 +52,7 @@ steps:
     commands:
       - "sonar-scanner \
        -Dsonar.organization=jayenkim \
-       -Dsonar.projectKey=PR-${DRONE_REPO_NAMESPACE}_${DRONE_REPO_NAME}_${DRONE_COMMIT_AUTHOR} \
+       -Dsonar.projectKey=${DRONE_REPO_NAMESPACE}_${DRONE_REPO_NAME} \
        -Dsonar.sources=. \
        -Dsonar.host.url=https://sonarcloud.io \
        -Dsonar.login=f55e2744c6dce02e2d90c413e3fbe894d3b946ee \
