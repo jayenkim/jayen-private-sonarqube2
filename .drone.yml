@@ -30,7 +30,7 @@ steps:
        -Dsonar.login=3c7fafbc53b71c70dac23086d9128da821e41107 \
        -Dsonar.java.binaries=. \ 
        -Dsonar.java.libraries=. \
-       -Dsonar.branch.name=main \
+       -Dsonar.branch.name=main \ 
        -Dsonar.exclusions=*LICENSE* \  
        --debug" 
     when:
